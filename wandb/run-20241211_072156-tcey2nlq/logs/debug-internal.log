@@ -1,0 +1,18 @@
+{"time":"2024-12-11T07:21:56.687099054Z","level":"INFO","msg":"using version","core version":"0.18.7"}
+{"time":"2024-12-11T07:21:56.687141795Z","level":"INFO","msg":"created symlink","path":"/kaggle/working/Yolov9_attention/wandb/run-20241211_072156-tcey2nlq/logs/debug-core.log"}
+{"time":"2024-12-11T07:21:56.792775507Z","level":"INFO","msg":"created new stream","id":"tcey2nlq"}
+{"time":"2024-12-11T07:21:56.792804327Z","level":"INFO","msg":"stream: started","id":"tcey2nlq"}
+{"time":"2024-12-11T07:21:56.792844403Z","level":"INFO","msg":"writer: Do: started","stream_id":"tcey2nlq"}
+{"time":"2024-12-11T07:21:56.792873378Z","level":"INFO","msg":"sender: started","stream_id":"tcey2nlq"}
+{"time":"2024-12-11T07:21:56.792885097Z","level":"INFO","msg":"handler: started","stream_id":"tcey2nlq"}
+{"time":"2024-12-11T07:21:57.10835151Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2024-12-11T08:26:13.793911763Z","level":"INFO","msg":"api: retrying HTTP error","status":500,"url":"https://api.wandb.ai/graphql"}
+{"time":"2024-12-11T18:17:21.098474444Z","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2024-12-11T18:17:21.100134816Z","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2024-12-11T18:17:22.099208161Z","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"uploading artifact run_tcey2nlq_model","runtime_seconds":1.179430005,"subtasks":[{"desc":"best.pt","runtime_seconds":0.539802809,"progress":"26.3MB/120.1MB"}]}],"total_operations":1}}
+{"time":"2024-12-11T18:17:25.319032108Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2024-12-11T18:17:26.493085551Z","level":"INFO","msg":"stream: closing","id":"tcey2nlq"}
+{"time":"2024-12-11T18:17:26.493112084Z","level":"INFO","msg":"handler: closed","stream_id":"tcey2nlq"}
+{"time":"2024-12-11T18:17:26.493133876Z","level":"INFO","msg":"writer: Close: closed","stream_id":"tcey2nlq"}
+{"time":"2024-12-11T18:17:26.493154745Z","level":"INFO","msg":"sender: closed","stream_id":"tcey2nlq"}
+{"time":"2024-12-11T18:17:26.493231318Z","level":"INFO","msg":"stream: closed","id":"tcey2nlq"}

@@ -1,0 +1,439 @@
+Downloading https://ultralytics.com/assets/Arial.ttf to /root/.config/Ultralytics/Arial.ttf...
+100%|████████████████████████████████████████| 755k/755k [00:00<00:00, 19.1MB/s]
+/kaggle/working/Yolov9_attention/train_dual.py:109: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  ckpt = torch.load(weights, map_location='cpu')  # load checkpoint to CPU to avoid CUDA memory leak
+Overriding model.yaml nc=80 with nc=6
+
+                 from  n    params  module                                  arguments
+[34m[1mactivation:[0m nn.SiLU()
+  0                -1  1         0  models.common.Silence                   []
+  1                -1  1      1856  models.common.Conv                      [3, 64, 3, 2]
+  2                -1  1     73984  models.common.Conv                      [64, 128, 3, 2]
+  3                -1  1    212864  models.common.RepNCSPELAN4              [128, 256, 128, 64, 1]
+  4                -1  1    590336  models.common.Conv                      [256, 256, 3, 2]
+  5                -1  1    847616  models.common.RepNCSPELAN4              [256, 512, 256, 128, 1]
+  6                -1  1    581241  models.common.ZSPA_NET                  [512, 512, 256]
+  7                -1  1   2360320  models.common.Conv                      [512, 512, 3, 2]
+  8                -1  1   2857472  models.common.RepNCSPELAN4              [512, 512, 512, 256, 1]
+  9                -1  1    581241  models.common.ZSPA_NET                  [512, 512, 512]
+ 10                -1  1   2360320  models.common.Conv                      [512, 512, 3, 2]
+ 11                -1  1   2857472  models.common.RepNCSPELAN4              [512, 512, 512, 256, 1]
+ 12                -1  1    581241  models.common.ZSPA_NET                  [512, 512, 512]
+ 13                -1  1    656896  models.common.SPPELAN                   [512, 512, 256]
+ 14                -1  1         0  torch.nn.modules.upsampling.Upsample    [None, 2, 'nearest']
+ 15           [-1, 9]  1         0  models.common.Concat                    [1]
+ 16                -1  1   3119616  models.common.RepNCSPELAN4              [1024, 512, 512, 256, 1]
+ 17                -1  1         0  torch.nn.modules.upsampling.Upsample    [None, 2, 'nearest']
+ 18           [-1, 6]  1         0  models.common.Concat                    [1]
+ 19                -1  1    912640  models.common.RepNCSPELAN4              [1024, 256, 256, 128, 1]
+ 20                -1  1    590336  models.common.Conv                      [256, 256, 3, 2]
+ 21          [-1, 16]  1         0  models.common.Concat                    [1]
+ 22                -1  1   2988544  models.common.RepNCSPELAN4              [768, 512, 512, 256, 1]
+ 23                -1  1   2360320  models.common.Conv                      [512, 512, 3, 2]
+ 24          [-1, 13]  1         0  models.common.Concat                    [1]
+ 25                -1  1   3119616  models.common.RepNCSPELAN4              [1024, 512, 512, 256, 1]
+ 26                 5  1    131328  models.common.CBLinear                  [512, [256]]
+ 27                 8  1    393984  models.common.CBLinear                  [512, [256, 512]]
+ 28                11  1    656640  models.common.CBLinear                  [512, [256, 512, 512]]
+ 29                 0  1      1856  models.common.Conv                      [3, 64, 3, 2]
+ 30                -1  1     73984  models.common.Conv                      [64, 128, 3, 2]
+ 31                -1  1    212864  models.common.RepNCSPELAN4              [128, 256, 128, 64, 1]
+ 32                -1  1    590336  models.common.Conv                      [256, 256, 3, 2]
+ 33  [26, 27, 28, -1]  1         0  models.common.CBFuse                    [[0, 0, 0]]
+ 34                -1  1    847616  models.common.RepNCSPELAN4              [256, 512, 256, 128, 1]
+ 35                -1  1   2360320  models.common.Conv                      [512, 512, 3, 2]
+ 36      [27, 28, -1]  1         0  models.common.CBFuse                    [[1, 1]]
+ 37                -1  1   2857472  models.common.RepNCSPELAN4              [512, 512, 512, 256, 1]
+ 38                -1  1   2360320  models.common.Conv                      [512, 512, 3, 2]
+ 39          [28, -1]  1         0  models.common.CBFuse                    [[2]]
+ 40                -1  1   2857472  models.common.RepNCSPELAN4              [512, 512, 512, 256, 1]
+ 41[34, 37, 40, 19, 22, 25]  1  21554372  models.yolo.DualDDetect                 [6, [512, 512, 512, 256, 512, 512]]
+ZSPA-Net summary: 1023 layers, 62552495 parameters, 62552463 gradients, 275.4 GFLOPs
+
+Transferred 1496/1496 items from /kaggle/input/non/other/default/1/last.pt
+[34m[1mAMP: [0mchecks passed ✅
+[34m[1moptimizer:[0m SGD(lr=0.01) with parameter groups 242 weight(decay=0.0), 271 weight(decay=0.0005), 257 bias
+WARNING ⚠️ DP not recommended, use torch.distributed.run for best DDP Multi-GPU results.
+[34m[1malbumentations: [0mBlur(p=0.01, blur_limit=(3, 7)), MedianBlur(p=0.01, blur_limit=(3, 7)), ToGray(p=0.01, num_output_channels=3, method='weighted_average'), CLAHE(p=0.01, clip_limit=(1.0, 4.0), tile_grid_size=(8, 8))
+/opt/conda/lib/python3.10/multiprocessing/popen_fork.py:66: RuntimeWarning: os.fork() was called. os.fork() is incompatible with multithreaded code, and JAX is multithreaded, so this will likely lead to a deadlock.
+  self.pid = os.fork()
+[34m[1mtrain: [0mScanning /kaggle/input/brakishoriginal/train/labels... 11739 images, 1772[0m
+[34m[1mtrain: [0mWARNING ⚠️ Cache directory /kaggle/input/brakishoriginal/train is not writeable: [Errno 30] Read-only file system: '/kaggle/input/brakishoriginal/train/labels.cache.npy'
+[34m[1mval: [0mScanning /kaggle/input/brakishoriginal/valid/labels... 1467 images, 229 bac[0m
+[34m[1mval: [0mWARNING ⚠️ Cache directory /kaggle/input/brakishoriginal/valid is not writeable: [Errno 30] Read-only file system: '/kaggle/input/brakishoriginal/valid/labels.cache.npy'
+Plotting labels to runs/train/yolov9zspanetlessparameterscontinue/labels.jpg...
+/opt/conda/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/opt/conda/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/opt/conda/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/opt/conda/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/opt/conda/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/opt/conda/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/opt/conda/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/opt/conda/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/opt/conda/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/opt/conda/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/opt/conda/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/opt/conda/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/opt/conda/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/opt/conda/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/opt/conda/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/opt/conda/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/opt/conda/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/opt/conda/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/opt/conda/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/opt/conda/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/kaggle/working/Yolov9_attention/train_dual.py:254: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = torch.cuda.amp.GradScaler(enabled=amp)
+Image sizes 640 train, 640 val
+Using 2 dataloader workers
+Logging results to [1mruns/train/yolov9zspanetlessparameterscontinue[0m
+Starting training for 40 epochs...
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+  0%|          | 0/734 00:00/kaggle/working/Yolov9_attention/train_dual.py:312: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+/opt/conda/lib/python3.10/site-packages/torch/nn/parallel/parallel_apply.py:79: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.device(device), torch.cuda.stream(stream), autocast(enabled=autocast_enabled):
+       0/39      9.87G     0.8981     0.5242      1.135         51        640:  Exception in thread Thread-15 (plot_images):
+Traceback (most recent call last):
+  File "/opt/conda/lib/python3.10/threading.py", line 1016, in _bootstrap_inner
+    self.run()
+  File "/opt/conda/lib/python3.10/threading.py", line 953, in run
+    self._target(*self._args, **self._kwargs)
+  File "/kaggle/working/Yolov9_attention/utils/plots.py", line 300, in plot_images
+    annotator.box_label(box, label, color=color)
+  File "/kaggle/working/Yolov9_attention/utils/plots.py", line 86, in box_label
+    w, h = self.font.getsize(label)  # text width, height
+AttributeError: 'FreeTypeFont' object has no attribute 'getsize'
+WARNING ⚠️ TensorBoard graph visualization failure Expected all tensors to be on the same device, but found at least two devices, cuda:0 and cpu! (when checking argument for argument max in method wrapper_CUDA_clamp_Tensor)
+       0/39      9.87G     0.8981     0.5242      1.135         51        640:  /kaggle/working/Yolov9_attention/train_dual.py:312: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(amp):
+/opt/conda/lib/python3.10/site-packages/torch/nn/parallel/parallel_apply.py:79: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.device(device), torch.cuda.stream(stream), autocast(enabled=autocast_enabled):
+       0/39      10.1G     0.9309     0.5308      1.124         91        640:  Exception in thread Thread-18 (plot_images):
+Traceback (most recent call last):
+  File "/opt/conda/lib/python3.10/threading.py", line 1016, in _bootstrap_inner
+    self.run()
+  File "/opt/conda/lib/python3.10/threading.py", line 953, in run
+    self._target(*self._args, **self._kwargs)
+  File "/kaggle/working/Yolov9_attention/utils/plots.py", line 300, in plot_images
+    annotator.box_label(box, label, color=color)
+  File "/kaggle/working/Yolov9_attention/utils/plots.py", line 86, in box_label
+    w, h = self.font.getsize(label)  # text width, height
+AttributeError: 'FreeTypeFont' object has no attribute 'getsize'
+       0/39      10.1G      1.045     0.6013      1.179         91        640:  Exception in thread Thread-21 (plot_images):
+Traceback (most recent call last):
+  File "/opt/conda/lib/python3.10/threading.py", line 1016, in _bootstrap_inner
+    self.run()
+  File "/opt/conda/lib/python3.10/threading.py", line 953, in run
+    self._target(*self._args, **self._kwargs)
+  File "/kaggle/working/Yolov9_attention/utils/plots.py", line 300, in plot_images
+    annotator.box_label(box, label, color=color)
+  File "/kaggle/working/Yolov9_attention/utils/plots.py", line 86, in box_label
+    w, h = self.font.getsize(label)  # text width, height
+AttributeError: 'FreeTypeFont' object has no attribute 'getsize'
+       0/39      13.1G      1.098     0.6185      1.171         88        640: 1
+                 Class     Images  Instances          P          R      mAP50
+                   all       1467       3581      0.954      0.946      0.978      0.761
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       1/39      13.1G       1.18     0.6757      1.192         52        640: 1
+                 Class     Images  Instances          P          R      mAP50
+                   all       1467       3581      0.955      0.946      0.978      0.749
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       2/39      14.4G      1.294     0.7468      1.224         58        640: 1
+                 Class     Images  Instances          P          R      mAP50
+                   all       1467       3581      0.947      0.907      0.964      0.705
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       3/39      14.4G      1.397     0.8301      1.265         81        640: 1
+                 Class     Images  Instances          P          R      mAP50
+                   all       1467       3581      0.929      0.888      0.942      0.673
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       4/39      14.4G      1.419     0.8484      1.272         71        640: 1
+                 Class     Images  Instances          P          R      mAP50
+                   all       1467       3581      0.923      0.897      0.948      0.688
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       5/39      14.4G      1.405     0.8344      1.265         32        640: 1
+                 Class     Images  Instances          P          R      mAP50
+                   all       1467       3581      0.919      0.849      0.928      0.641
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       6/39      14.4G      1.395     0.8339      1.262         43        640: 1
+                 Class     Images  Instances          P          R      mAP50
+                   all       1467       3581      0.927      0.901      0.946      0.659
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       7/39      14.4G      1.374     0.8096      1.254         41        640: 1
+                 Class     Images  Instances          P          R      mAP50
+                   all       1467       3581       0.96      0.902      0.963      0.714
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       8/39      14.4G      1.356     0.7926      1.244         76        640: 1
+                 Class     Images  Instances          P          R      mAP50
+                   all       1467       3581      0.952      0.913      0.963      0.714
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       9/39      14.4G      1.341     0.7785      1.246         32        640: 1
+                 Class     Images  Instances          P          R      mAP50
+                   all       1467       3581      0.957      0.929      0.967      0.712
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      10/39      14.4G      1.329     0.7759      1.242         65        640: 1
+                 Class     Images  Instances          P          R      mAP50
+                   all       1467       3581      0.949      0.926      0.972      0.718
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      11/39      14.4G      1.293     0.7563      1.228         39        640: 1
+                 Class     Images  Instances          P          R      mAP50
+                   all       1467       3581      0.953      0.931      0.968      0.732
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      12/39      14.4G      1.291      0.748      1.223         87        640: 1
+                 Class     Images  Instances          P          R      mAP50
+                   all       1467       3581      0.962      0.925      0.968      0.726
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      13/39      14.4G      1.266     0.7252      1.221         41        640: 1
+                 Class     Images  Instances          P          R      mAP50
+                   all       1467       3581      0.943      0.944      0.971      0.736
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      14/39      14.4G       1.25     0.7163      1.218         42        640: 1
+                 Class     Images  Instances          P          R      mAP50
+                   all       1467       3581      0.962      0.939      0.973      0.747
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      15/39      14.4G      1.241     0.7014      1.208         70        640: 1
+                 Class     Images  Instances          P          R      mAP50
+                   all       1467       3581      0.961      0.942      0.974      0.746
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      16/39      14.4G      1.228     0.7032      1.205         70        640: 1
+                 Class     Images  Instances          P          R      mAP50
+                   all       1467       3581      0.975      0.934      0.976      0.759
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      17/39      14.4G      1.209     0.6906      1.202         37        640: 1
+                 Class     Images  Instances          P          R      mAP50
+                   all       1467       3581      0.969      0.947      0.977      0.758
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      18/39      14.4G      1.203     0.6775      1.201         32        640: 1
+                 Class     Images  Instances          P          R      mAP50
+                   all       1467       3581      0.962      0.951      0.978      0.766
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      19/39      14.4G      1.192     0.6713      1.197         44        640: 1
+                 Class     Images  Instances          P          R      mAP50
+                   all       1467       3581       0.96      0.957       0.98      0.769
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      20/39      14.4G      1.178     0.6592      1.191         66        640: 1
+                 Class     Images  Instances          P          R      mAP50
+                   all       1467       3581      0.972      0.963      0.982      0.783
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      21/39      14.4G      1.159     0.6503      1.185         65        640: 1
+                 Class     Images  Instances          P          R      mAP50
+                   all       1467       3581      0.959       0.96      0.981      0.785
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      22/39      14.4G      1.145     0.6456       1.18         56        640: 1
+                 Class     Images  Instances          P          R      mAP50
+                   all       1467       3581      0.953      0.961       0.98      0.781
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      23/39      14.4G      1.125     0.6327      1.176         31        640: 1
+                 Class     Images  Instances          P          R      mAP50
+                   all       1467       3581      0.964      0.968      0.983      0.787
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      24/39      14.4G      1.102     0.6159      1.168         75        640: 1
+                 Class     Images  Instances          P          R      mAP50
+                   all       1467       3581      0.971      0.961      0.982      0.791
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      25/39      14.4G      1.103     0.6162      1.172         48        640: 1
+                 Class     Images  Instances          P          R      mAP50
+                   all       1467       3581       0.98      0.948      0.981      0.791
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      26/39      14.4G      1.088     0.6049      1.165         47        640: 1
+                 Class     Images  Instances          P          R      mAP50
+                   all       1467       3581      0.981      0.957      0.984      0.797
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      27/39      14.4G      1.084     0.6037      1.166         66        640: 1
+                 Class     Images  Instances          P          R      mAP50
+                   all       1467       3581      0.971      0.961      0.984        0.8
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      28/39      14.4G      1.067     0.5943      1.159         52        640: 1
+                 Class     Images  Instances          P          R      mAP50
+                   all       1467       3581      0.977      0.961      0.984      0.798
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      29/39      14.4G      1.051     0.5819      1.149         59        640: 1
+                 Class     Images  Instances          P          R      mAP50
+                   all       1467       3581      0.974      0.967      0.984      0.803
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      30/39      14.4G      1.042     0.5704      1.148         50        640: 1
+                 Class     Images  Instances          P          R      mAP50
+                   all       1467       3581      0.972      0.964      0.985      0.808
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      31/39      14.4G       1.03     0.5669      1.145         57        640: 1
+                 Class     Images  Instances          P          R      mAP50
+                   all       1467       3581      0.974      0.966      0.985      0.808
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      32/39      14.4G      1.011     0.5596      1.141         64        640: 1
+                 Class     Images  Instances          P          R      mAP50
+                   all       1467       3581      0.978      0.961      0.985      0.811
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      33/39      14.4G     0.9965     0.5483       1.14         23        640: 1
+                 Class     Images  Instances          P          R      mAP50
+                   all       1467       3581      0.976      0.962      0.985      0.815
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      34/39      14.4G     0.9858     0.5426      1.138         61        640: 1
+                 Class     Images  Instances          P          R      mAP50
+                   all       1467       3581      0.974      0.969      0.986      0.817
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      35/39      14.4G      0.975     0.5363      1.134         62        640: 1
+                 Class     Images  Instances          P          R      mAP50
+                   all       1467       3581      0.976       0.97      0.987      0.822
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      36/39      14.4G     0.9584     0.5273      1.126         61        640: 1
+                 Class     Images  Instances          P          R      mAP50
+                   all       1467       3581      0.979      0.968      0.987      0.822
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      37/39      14.4G     0.9452      0.519      1.122         47        640: 1
+                 Class     Images  Instances          P          R      mAP50
+                   all       1467       3581      0.977      0.971      0.987       0.82
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      38/39      14.4G     0.9379     0.5156      1.121         75        640: 1
+                 Class     Images  Instances          P          R      mAP50
+                   all       1467       3581      0.983      0.965      0.988      0.822
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      39/39      14.4G      0.933     0.5134       1.12         54        640: 1
+                 Class     Images  Instances          P          R      mAP50
+                   all       1467       3581      0.981      0.966      0.988      0.824
+
+40 epochs completed in 10.890 hours.
+/kaggle/working/Yolov9_attention/utils/general.py:999: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  x = torch.load(f, map_location=torch.device('cpu'))
+Optimizer stripped from runs/train/yolov9zspanetlessparameterscontinue/weights/last.pt, 125.9MB
+Optimizer stripped from runs/train/yolov9zspanetlessparameterscontinue/weights/best.pt, 125.9MB
+
+Validating runs/train/yolov9zspanetlessparameterscontinue/weights/best.pt...
+/kaggle/working/Yolov9_attention/models/experimental.py:243: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  ckpt = torch.load(attempt_download(w), map_location='cpu')  # load
+Fusing layers...
+ZSPA-Net summary: 673 layers, 62251183 parameters, 0 gradients, 273.2 GFLOPs
+                 Class     Images  Instances          P          R      mAP50   Exception in thread Thread-58737 (plot_images):
+Traceback (most recent call last):
+  File "/opt/conda/lib/python3.10/threading.py", line 1016, in _bootstrap_inner
+    self.run()
+  File "/opt/conda/lib/python3.10/threading.py", line 953, in run
+    self._target(*self._args, **self._kwargs)
+  File "/kaggle/working/Yolov9_attention/utils/plots.py", line 300, in plot_images
+    annotator.box_label(box, label, color=color)
+  File "/kaggle/working/Yolov9_attention/utils/plots.py", line 86, in box_label
+    w, h = self.font.getsize(label)  # text width, height
+AttributeError: 'FreeTypeFont' object has no attribute 'getsize'
+Exception in thread Thread-58736 (plot_images):
+Traceback (most recent call last):
+  File "/opt/conda/lib/python3.10/threading.py", line 1016, in _bootstrap_inner
+    self.run()
+  File "/opt/conda/lib/python3.10/threading.py", line 953, in run
+    self._target(*self._args, **self._kwargs)
+  File "/kaggle/working/Yolov9_attention/utils/plots.py", line 300, in plot_images
+    annotator.box_label(box, label, color=color)
+  File "/kaggle/working/Yolov9_attention/utils/plots.py", line 86, in box_label
+    w, h = self.font.getsize(label)  # text width, height
+AttributeError: 'FreeTypeFont' object has no attribute 'getsize'
+                 Class     Images  Instances          P          R      mAP50   Exception in thread Thread-58739 (plot_images):
+Traceback (most recent call last):
+  File "/opt/conda/lib/python3.10/threading.py", line 1016, in _bootstrap_inner
+    self.run()
+  File "/opt/conda/lib/python3.10/threading.py", line 953, in run
+    self._target(*self._args, **self._kwargs)
+  File "/kaggle/working/Yolov9_attention/utils/plots.py", line 300, in plot_images
+    annotator.box_label(box, label, color=color)
+  File "/kaggle/working/Yolov9_attention/utils/plots.py", line 86, in box_label
+    w, h = self.font.getsize(label)  # text width, height
+AttributeError: 'FreeTypeFont' object has no attribute 'getsize'
+Exception in thread Thread-58738 (plot_images):
+Traceback (most recent call last):
+  File "/opt/conda/lib/python3.10/threading.py", line 1016, in _bootstrap_inner
+    self.run()
+  File "/opt/conda/lib/python3.10/threading.py", line 953, in run
+    self._target(*self._args, **self._kwargs)
+  File "/kaggle/working/Yolov9_attention/utils/plots.py", line 300, in plot_images
+    annotator.box_label(box, label, color=color)
+  File "/kaggle/working/Yolov9_attention/utils/plots.py", line 86, in box_label
+    w, h = self.font.getsize(label)  # text width, height
+AttributeError: 'FreeTypeFont' object has no attribute 'getsize'
+                 Class     Images  Instances          P          R      mAP50   Exception in thread Thread-58741 (plot_images):
+Traceback (most recent call last):
+  File "/opt/conda/lib/python3.10/threading.py", line 1016, in _bootstrap_inner
+    self.run()
+  File "/opt/conda/lib/python3.10/threading.py", line 953, in run
+    self._target(*self._args, **self._kwargs)
+  File "/kaggle/working/Yolov9_attention/utils/plots.py", line 300, in plot_images
+    annotator.box_label(box, label, color=color)
+  File "/kaggle/working/Yolov9_attention/utils/plots.py", line 86, in box_label
+    w, h = self.font.getsize(label)  # text width, height
+AttributeError: 'FreeTypeFont' object has no attribute 'getsize'
+Exception in thread Thread-58740 (plot_images):
+Traceback (most recent call last):
+  File "/opt/conda/lib/python3.10/threading.py", line 1016, in _bootstrap_inner
+    self.run()
+  File "/opt/conda/lib/python3.10/threading.py", line 953, in run
+    self._target(*self._args, **self._kwargs)
+  File "/kaggle/working/Yolov9_attention/utils/plots.py", line 300, in plot_images
+    annotator.box_label(box, label, color=color)
+  File "/kaggle/working/Yolov9_attention/utils/plots.py", line 86, in box_label
+    w, h = self.font.getsize(label)  # text width, height
+AttributeError: 'FreeTypeFont' object has no attribute 'getsize'
+                 Class     Images  Instances          P          R      mAP50
+                   all       1467       3581      0.981      0.966      0.987      0.824
+                  crab       1467       1189      0.994      0.987      0.995      0.886
+                  fish       1467        322      0.994       0.96      0.993      0.851
+             jellyfish       1467         55      0.982      0.971      0.994      0.754
+                shrimp       1467         76      0.954      0.987      0.993      0.788
+            small_fish       1467       1148      0.965      0.893      0.954       0.68
+              starfish       1467        791      0.997      0.997      0.995      0.987
+Results saved to [1mruns/train/yolov9zspanetlessparameterscontinue[0m

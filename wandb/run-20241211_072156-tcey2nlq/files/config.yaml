@@ -1,0 +1,179 @@
+_wandb:
+    value:
+        bounding_box/class_labels:
+            BoundingBoxDebugger_wandb_delimeter_predictions:
+                key: BoundingBoxDebugger_wandb_delimeter_predictions
+                type: bounding_box/class_labels
+                value:
+                    "0": crab
+                    "1": fish
+                    "2": jellyfish
+                    "3": shrimp
+                    "4": small_fish
+                    "5": starfish
+        cli_version: 0.18.7
+        m: []
+        python_version: 3.10.14
+        t:
+            "1":
+                - 1
+                - 2
+                - 3
+                - 12
+                - 41
+                - 55
+                - 105
+            "2":
+                - 1
+                - 2
+                - 3
+                - 12
+                - 41
+                - 49
+                - 55
+                - 80
+                - 105
+            "3":
+                - 2
+                - 13
+                - 16
+                - 23
+                - 55
+                - 62
+            "4": 3.10.14
+            "5": 0.18.7
+            "8":
+                - 2
+                - 5
+            "12": 0.18.7
+            "13": linux-x86_64
+artifact_alias:
+    value: latest
+batch_size:
+    value: 16
+bbox_interval:
+    value: -1
+bucket:
+    value: ""
+cache:
+    value: null
+cfg:
+    value: /kaggle/working/Yolov9_attention/models/detect/ZSPA-Net.yaml
+close_mosaic:
+    value: 0
+cos_lr:
+    value: false
+data:
+    value: /kaggle/input/yolov9brakishoriginal/other/default/1/yolov9Original.yaml
+data_dict:
+    value:
+        names:
+            "0": crab
+            "1": fish
+            "2": jellyfish
+            "3": shrimp
+            "4": small_fish
+            "5": starfish
+        nc: 6
+        path: /kaggle/working/Yolov9_attention
+        test: /kaggle/input/brakishoriginal/test
+        train: /kaggle/input/brakishoriginal/train
+        val: /kaggle/input/brakishoriginal/valid
+device:
+    value: ""
+entity:
+    value: null
+epochs:
+    value: 40
+evolve:
+    value: null
+exist_ok:
+    value: false
+fixed_lr:
+    value: false
+flat_cos_lr:
+    value: false
+freeze:
+    value:
+        - 0
+hyp:
+    value:
+        anchor_t: 5
+        box: 7.5
+        cls: 0.5
+        cls_pw: 1
+        copy_paste: 0.3
+        degrees: 0
+        dfl: 1.5
+        fl_gamma: 0
+        fliplr: 0.5
+        flipud: 0
+        hsv_h: 0.015
+        hsv_s: 0.7
+        hsv_v: 0.4
+        iou_t: 0.2
+        lr0: 0.01
+        lrf: 0.01
+        mixup: 0.15
+        momentum: 0.937
+        mosaic: 1
+        obj: 0.7
+        obj_pw: 1
+        perspective: 0
+        scale: 0.9
+        shear: 0
+        translate: 0.1
+        warmup_bias_lr: 0.1
+        warmup_epochs: 3
+        warmup_momentum: 0.8
+        weight_decay: 0.0005
+image_weights:
+    value: false
+imgsz:
+    value: 640
+label_smoothing:
+    value: 0
+local_rank:
+    value: -1
+min_items:
+    value: 0
+multi_scale:
+    value: false
+name:
+    value: yolov9zspanetlessparameterscontinue
+noautoanchor:
+    value: false
+noplots:
+    value: false
+nosave:
+    value: false
+noval:
+    value: false
+optimizer:
+    value: SGD
+patience:
+    value: 100
+project:
+    value: runs/train
+quad:
+    value: false
+rect:
+    value: false
+resume:
+    value: false
+save_dir:
+    value: runs/train/yolov9zspanetlessparameterscontinue
+save_period:
+    value: -1
+seed:
+    value: 0
+single_cls:
+    value: false
+sync_bn:
+    value: false
+upload_dataset:
+    value: false
+weights:
+    value: /kaggle/input/non/other/default/1/last.pt
+workers:
+    value: 8

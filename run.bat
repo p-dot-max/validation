@@ -1,0 +1,2 @@
+@echo off
+python val.py --data C:\Users\Atulya\Documents\YOLOv9exp\Yolov9_attention\data.yaml --img 640 --batch 16 --conf 0.001 --iou 0.7 --device cpu --weights .\best.pt --save-json --name yolov9_c_640_val

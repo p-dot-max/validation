@@ -1,0 +1,69 @@
+{
+  "os": "Linux-6.6.56+-x86_64-with-glibc2.35",
+  "python": "3.10.14",
+  "startedAt": "2024-12-11T07:21:56.679401Z",
+  "args": [
+    "--batch",
+    "16",
+    "--workers",
+    "8",
+    "--data",
+    "/kaggle/input/yolov9brakishoriginal/other/default/1/yolov9Original.yaml",
+    "--img",
+    "640",
+    "--cfg",
+    "/kaggle/working/Yolov9_attention/models/detect/ZSPA-Net.yaml",
+    "--weights",
+    "/kaggle/input/non/other/default/1/last.pt",
+    "--name",
+    "yolov9zspanetlessparameterscontinue",
+    "--hyp",
+    "hyp.scratch-high.yaml",
+    "--epochs",
+    "40"
+  ],
+  "program": "/kaggle/working/Yolov9_attention/train_dual.py",
+  "codePath": "train_dual.py",
+  "git": {
+    "remote": "https://github.com/p-dot-max/Yolov9_attention",
+    "commit": "a60cef2ea3ee05c222c2ebea782256e9db92937a"
+  },
+  "email": "atulya1098@gmail.com",
+  "root": "/kaggle/working/Yolov9_attention",
+  "host": "1d920db7f220",
+  "username": "root",
+  "executable": "/opt/conda/bin/python",
+  "codePathLocal": "train_dual.py",
+  "cpu_count": 2,
+  "cpu_count_logical": 4,
+  "gpu": "Tesla T4",
+  "gpu_count": 2,
+  "disk": {
+    "/": {
+      "total": "8656922775552",
+      "used": "6456882262016"
+    }
+  },
+  "memory": {
+    "total": "33662353408"
+  },
+  "cpu": {
+    "count": 2,
+    "countLogical": 4
+  },
+  "gpu_nvidia": [
+    {
+      "name": "Tesla T4",
+      "memoryTotal": "16106127360",
+      "cudaCores": 2560,
+      "architecture": "Turing"
+    },
+    {
+      "name": "Tesla T4",
+      "memoryTotal": "16106127360",
+      "cudaCores": 2560,
+      "architecture": "Turing"
+    }
+  ],
+  "cudaVersion": "12.6"
+}
